@@ -16,13 +16,13 @@ public class HelloSolutionTest {
     	hello = new HelloSolution();
     }
 
-    @Test
-    public void hello1() {
-        assertThat(hello.hello1("ValTech"), equalTo("Hello, World!"));
-    }
+//    @Test
+//    public void hello() {
+//        assertThat(hello.hello1("ValTech"), equalTo("Hello, World!"));
+//    }
     
     @Test
-    public void hello2() {
-        assertThat(hello.hello2("ValTech"), equalTo("Hello, ValTech!"));
+    public void hello() {
+        assertThat(hello.hello("ValTech"), equalTo("Hello, ValTech!"));
     }
 }

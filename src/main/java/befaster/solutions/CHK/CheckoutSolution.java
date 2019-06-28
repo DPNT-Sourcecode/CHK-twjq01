@@ -107,6 +107,8 @@ public class CheckoutSolution {
 								shoppingQuantity -= itemDiscount.getItemQuantity();
 							}else {
 								totalPrice += (shoppingQuantity.intValue() * itemPriceMap.get(shoppingItem));
+								int sQty = shoppingQuantity.intValue(); 
+								itemQuantityMap.computeIfPresent(shoppingItem, (key, value) -> value > 0 ? value - sQty : 0);
 								shoppingQuantity -= shoppingQuantity;
 							}
 						}
@@ -130,5 +132,3 @@ public class CheckoutSolution {
 		return Optional.empty();
 	}
 }
-
-

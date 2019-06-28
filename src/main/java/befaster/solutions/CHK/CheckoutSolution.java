@@ -3,6 +3,7 @@ package befaster.solutions.CHK;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.MapUtils;
@@ -91,7 +92,13 @@ public class CheckoutSolution {
 	}
 	
 	private Optional<ItemDiscount> getItemDiscount(List<ItemDiscount> itemDiscountList, Integer shoppingItemQuantity) {
+		List<ItemDiscount> filterList = itemDiscountList.stream().filter(item -> item.getItemQuantity() <= shoppingItemQuantity).collect(Collectors.toList());
+		if(CollectionUtils.isNotEmpty(filterList)) {
+			
+		}
 		
+		return Optional.empty();
 	}
 }
+
 

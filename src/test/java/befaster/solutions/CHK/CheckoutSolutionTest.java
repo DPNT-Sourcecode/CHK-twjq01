@@ -27,5 +27,10 @@ public class CheckoutSolutionTest {
 		assertThat(checkout.checkout("AAAABBBCD"), equalTo(290));
 		assertThat(checkout.checkout("AAAAABBBCD"), equalTo(310));
 		assertThat(checkout.checkout("AAAAAAAAABEE"), equalTo(460));
+		assertThat(checkout.checkout("EEEB"), equalTo(120));
+		assertThat(checkout.checkout("EEEEBB"), equalTo(160));
+		assertThat(checkout.checkout("BEBEEE"), equalTo(160));
+		assertThat(checkout.checkout("ABCDECBAABCABBAAAEEAA"), equalTo(705));
 	}
 }
+

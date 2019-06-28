@@ -45,16 +45,18 @@ public class CheckoutSolution {
 			// Start Calculation here
 			itemQuantityMap.forEach((shoppingItem, shoppingQuantity) -> {
 				
+				// Check for discount on Item
 				if(itemDiscountMap.containsKey(shoppingItem)) {
 					
 				}else {
-					totalPrice += shoppingQuantity.intValue() + itemPriceMap.get(shoppingItem);
+					totalPrice += (shoppingQuantity.intValue() * itemPriceMap.get(shoppingItem));
 				}
 			});
 			// End Calculation here
 		}
 	}
 }
+
 
 
 

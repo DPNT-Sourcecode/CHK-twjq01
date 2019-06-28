@@ -56,7 +56,6 @@ public class CheckoutSolution {
 	private void calculateTotalPriceForItems(Map<String, Long> itemQuantityMap) {
 		
 		if(MapUtils.isNotEmpty(itemQuantityMap)) {
-			System.out.println(itemQuantityMap);
 			
 			// Get Price for each Item here
 			Map<String, Integer> itemPriceMap = ItemDataCollection.getItemPriceMap();
@@ -128,6 +127,7 @@ public class CheckoutSolution {
 		return Optional.empty();
 	}
 }
+
 
 
 

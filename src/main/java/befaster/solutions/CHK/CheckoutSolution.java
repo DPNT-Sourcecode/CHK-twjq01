@@ -40,10 +40,14 @@ public class CheckoutSolution {
 			System.out.println(itemPriceMap);
 			
 			// Get Item Offer here
+			Map<String, ItemDiscount> itemDiscountMap = ItemDataCollection.getItemDiscountMap();
+			
+			// Start Calculation here
 			
 			
 		}
 	}
 }
+
 
 

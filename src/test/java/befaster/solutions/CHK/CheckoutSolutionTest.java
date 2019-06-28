@@ -21,8 +21,10 @@ public class CheckoutSolutionTest {
 		assertThat(checkout.checkout("A,A,B,C,D"), equalTo(165));
 		assertThat(checkout.checkout("A,A,A,B,C,D"), equalTo(195));
 		assertThat(checkout.checkout("A,A,A,B,B,C,D"), equalTo(210));
+		assertThat(checkout.checkout("A,A,A,A,B,B,B,C,D"), equalTo(290));
 	}
 }
+
 
 
 

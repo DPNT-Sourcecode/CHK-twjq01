@@ -58,15 +58,16 @@ public class CheckoutSolution {
 			Map<String, Integer> itemPriceMap = ItemDataCollection.getItemPriceMap();
 			
 			// Get Item Offer here
-			Map<String, ItemDiscount> itemDiscountMap = ItemDataCollection.getItemDiscountMap();
+			Map<String, List<ItemDiscount>> itemDiscountMap = ItemDataCollection.getItemDiscountMap();
 			
 			// Start Calculation here
 			itemQuantityMap.forEach((shoppingItem, shoppingQuantity) -> {
 				
 				// Check for discount on Item
 				if(itemDiscountMap.containsKey(shoppingItem)) {
-					ItemDiscount itemDiscount = itemDiscountMap.get(shoppingItem);
-					if(itemDiscount != null) {
+					List<ItemDiscount> itemDiscountList = itemDiscountMap.get(shoppingItem);
+					
+					if(CollectionUtils.isNotEmpty(itemDiscountList)) {
 						
 						if(itemDiscount.getItemQuantity() < shoppingQuantity.intValue()) {
 							totalPrice += ((shoppingQuantity.intValue() % itemDiscount.getItemQuantity()) * itemPriceMap.get(shoppingItem))
@@ -85,3 +86,4 @@ public class CheckoutSolution {
 		}
 	}
 }
+

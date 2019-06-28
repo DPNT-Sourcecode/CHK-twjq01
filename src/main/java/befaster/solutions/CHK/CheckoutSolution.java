@@ -102,11 +102,13 @@ public class CheckoutSolution {
 									}
 								}else {
 									totalPrice += itemDiscount.getItemPrice();
+									itemQuantityMap.computeIfPresent(itemDiscount.getItemFree(), (key, value) -> value > 0 ? value - itemDiscount.getItemQuantity() : 0);
 								}
 								
 								shoppingQuantity -= itemDiscount.getItemQuantity();
 							}else {
 								totalPrice += (shoppingQuantity.intValue() * itemPriceMap.get(shoppingItem));
+								itemQuantityMap.computeIfPresent(shoppingItem, (key, value) -> value > 0 ? value - shoppingQuantity.intValue() : 0);
 								shoppingQuantity -= shoppingQuantity;
 							}
 						}
@@ -128,3 +130,4 @@ public class CheckoutSolution {
 		return Optional.empty();
 	}
 }
+

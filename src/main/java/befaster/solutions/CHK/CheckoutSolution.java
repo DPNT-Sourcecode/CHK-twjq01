@@ -88,9 +88,14 @@ public class CheckoutSolution {
 											if(itemDiscountFreeOptional.isPresent()) {
 												ItemDiscount itemDiscountFree = itemDiscountFreeOptional.get();
 												totalPrice -= itemDiscountFree.getItemPrice();
+												itemQuantityMap.computeIfPresent(itemDiscount.getItemFree(), (key, value) -> value > 0 ? value - freeItemCount : 0);
+											}else {
+												totalPrice -= itemPriceMap.get(itemDiscount.getItemFree());
+												itemQuantityMap.computeIfPresent(itemDiscount.getItemFree(), (key, value) -> value > 0 ? value - 1 : 0);
 											}
 										}else {
 											totalPrice -= itemPriceMap.get(itemDiscount.getItemFree());
+											itemQuantityMap.computeIfPresent(itemDiscount.getItemFree(), (key, value) -> value > 0 ? value - 1 : 0);
 										}
 									}
 								}else {
@@ -121,4 +126,5 @@ public class CheckoutSolution {
 		return Optional.empty();
 	}
 }
+
 

@@ -1,5 +1,6 @@
 package befaster.solutions.CHK;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -71,6 +72,12 @@ public class CheckoutSolution {
 					
 					if(CollectionUtils.isNotEmpty(itemDiscountList)) {
 						
+						Optional<ItemDiscount> itemDiscountOptional = getItemDiscount(itemDiscountList, shoppingQuantity.intValue());
+						
+						if(itemDiscountOptional.isPresent()) {
+							
+						}
+						
 						for (ItemDiscount itemDiscount : itemDiscountList) {
 
 							if(itemDiscount.getItemQuantity() < shoppingQuantity.intValue()) {
@@ -94,11 +101,12 @@ public class CheckoutSolution {
 	private Optional<ItemDiscount> getItemDiscount(List<ItemDiscount> itemDiscountList, Integer shoppingItemQuantity) {
 		List<ItemDiscount> filterList = itemDiscountList.stream().filter(item -> item.getItemQuantity() <= shoppingItemQuantity).collect(Collectors.toList());
 		if(CollectionUtils.isNotEmpty(filterList)) {
-			
+			Comparator<ItemDiscount> comparator = Comparator.comparing(ItemDiscount::getItemQuantity);
+			return Optional.ofNullable(filterList.stream().max(comparator).orElse(null));
 		}
-		
 		return Optional.empty();
 	}
 }
+
 
 

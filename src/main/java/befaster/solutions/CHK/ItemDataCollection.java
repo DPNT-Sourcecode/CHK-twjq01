@@ -51,10 +51,11 @@ public class ItemDataCollection {
 	public static Map<String, List<ItemDiscount>> getItemDiscountMap() {
 		Map<String, List<ItemDiscount>> itemDiscountMap = new TreeMap<>();
 		
-		itemDiscountMap.put("A", Arrays.asList(new ItemDiscount("A", 3, 130)));
-		itemDiscountMap.put("B", Arrays.asList(new ItemDiscount("B", 2, 45)));
+		itemDiscountMap.put("A", Arrays.asList(new ItemDiscount("A", 3, 130, null), new ItemDiscount("A", 5, 200, null)));
+		itemDiscountMap.put("B", Arrays.asList(new ItemDiscount("B", 2, 45, null)));
 		
 		return itemDiscountMap;
 	}
 
 }
+

@@ -29,6 +29,11 @@ public class ItemDataCollection {
 			return Collections.emptyMap();
 		}
 	}
+	
+	public static Map<String, ItemDiscount> getItemDiscountMap() {
+		
+	}
 
 }
+
 

@@ -70,7 +70,7 @@ public class CheckoutSolution {
 				// Check for discount on Item
 				if(itemDiscountMap.containsKey(shoppingItem)) {
 					List<ItemDiscount> itemDiscountList = itemDiscountMap.get(shoppingItem);
-
+					System.out.println("shoppingItem -->"+shoppingItem+ "totalPrice ::"+totalPrice);
 					if(CollectionUtils.isNotEmpty(itemDiscountList)) {
 						while(shoppingQuantity > 0) {
 							Optional<ItemDiscount> itemDiscountOptional = getItemDiscount(itemDiscountList, shoppingQuantity.intValue());
@@ -127,7 +127,3 @@ public class CheckoutSolution {
 		return Optional.empty();
 	}
 }
-
-
-
-

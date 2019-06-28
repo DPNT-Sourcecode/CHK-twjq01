@@ -34,4 +34,3 @@ public class CheckoutSolutionTest {
 		assertThat(checkout.checkout("ABCDE"), equalTo(165));
 	}
 }
-

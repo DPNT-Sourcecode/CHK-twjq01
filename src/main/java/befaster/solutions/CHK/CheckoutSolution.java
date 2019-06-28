@@ -43,11 +43,19 @@ public class CheckoutSolution {
 			Map<String, ItemDiscount> itemDiscountMap = ItemDataCollection.getItemDiscountMap();
 			
 			// Start Calculation here
-			
-			
+			itemQuantityMap.forEach((shoppingItem, shoppingQuantity) -> {
+				
+				if(itemDiscountMap.containsKey(shoppingItem)) {
+					
+				}else {
+					totalPrice += shoppingQuantity.intValue() + itemPriceMap.get(shoppingItem);
+				}
+			});
+			// End Calculation here
 		}
 	}
 }
+
 
 
 

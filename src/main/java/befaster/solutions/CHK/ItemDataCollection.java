@@ -9,8 +9,17 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 public class ItemDataCollection {
+	
+	public static List<String> prepareShoppingCartItemList(String skus) {
+		if(StringUtils.isNotEmpty(skus)) {
+			for (Character c : skus.toCharArray()) {
+				
+			}
+		}
+	}
 	
 	public static Map<String, Integer> getItemPriceMap() {
 		Map<String, Integer> itemPriceMap = new TreeMap<>();
@@ -45,3 +54,4 @@ public class ItemDataCollection {
 	}
 
 }
+

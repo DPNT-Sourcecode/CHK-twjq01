@@ -1,8 +1,8 @@
 package befaster.solutions.CHK;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -15,7 +15,7 @@ import org.apache.commons.lang3.StringUtils;
 public class ItemDataCollection {
 	
 	public static List<String> prepareShoppingCartItemList(String skus) {
-		List<String> shoppingCartItemList = new ArrayList<>();
+		List<String> shoppingCartItemList = new LinkedList<>();
 		if(StringUtils.isNotEmpty(skus)) {
 			for (Character c : skus.toCharArray()) {
 				shoppingCartItemList.add(String.valueOf(c));

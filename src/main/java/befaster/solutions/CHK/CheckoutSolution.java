@@ -56,6 +56,7 @@ public class CheckoutSolution {
 	private void calculateTotalPriceForItems(Map<String, Long> itemQuantityMap) {
 		
 		if(MapUtils.isNotEmpty(itemQuantityMap)) {
+			System.out.println(itemQuantityMap);
 			
 			// Get Price for each Item here
 			Map<String, Integer> itemPriceMap = ItemDataCollection.getItemPriceMap();
@@ -76,9 +77,21 @@ public class CheckoutSolution {
 							if(itemDiscountOptional.isPresent()) {
 								ItemDiscount itemDiscount = itemDiscountOptional.get();
 								if(StringUtils.isNotEmpty(itemDiscount.getItemFree())) {
-									totalPrice += (shoppingQuantity.intValue() * itemPriceMap.get(shoppingItem));
+									//totalPrice += (shoppingQuantity.intValue() * itemPriceMap.get(shoppingItem));
+									totalPrice += (itemDiscount.getItemQuantity() * itemPriceMap.get(shoppingItem));
+									
 									if(itemQuantityMap.containsKey(itemDiscount.getItemFree())) {
-										totalPrice -= itemPriceMap.get(itemDiscount.getItemFree());
+										List<ItemDiscount> itemDiscountFreeList = itemDiscountMap.get(itemDiscount.getItemFree());
+										if(CollectionUtils.isNotEmpty(itemDiscountFreeList)) {
+											Integer freeItemCount = itemQuantityMap.get(itemDiscount.getItemFree()).intValue();
+											Optional<ItemDiscount> itemDiscountFreeOptional = getItemDiscount(itemDiscountFreeList, freeItemCount);
+											if(itemDiscountFreeOptional.isPresent()) {
+												ItemDiscount itemDiscountFree = itemDiscountFreeOptional.get();
+												totalPrice -= itemDiscountFree.getItemPrice();
+											}
+										}else {
+											totalPrice -= itemPriceMap.get(itemDiscount.getItemFree());
+										}
 									}
 								}else {
 									totalPrice += itemDiscount.getItemPrice();

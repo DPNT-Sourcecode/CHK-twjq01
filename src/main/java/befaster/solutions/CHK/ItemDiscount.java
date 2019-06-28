@@ -5,11 +5,13 @@ public class ItemDiscount {
 	private String itemName;
 	private Integer itemQuantity;
 	private Integer itemPrice;
+	private ItemDiscount itemFree;
 
-	public ItemDiscount(String itemName, Integer itemQuantity, Integer itemPrice) {
+	public ItemDiscount(String itemName, Integer itemQuantity, Integer itemPrice, ItemDiscount itemFree) {
 		this.itemName = itemName;
 		this.itemQuantity = itemQuantity;
 		this.itemPrice = itemPrice;
+		this.itemFree = itemFree;
 	}
 
 	public String getItemName() {
@@ -24,4 +26,9 @@ public class ItemDiscount {
 		return itemPrice;
 	}
 
+	public ItemDiscount getItemFree() {
+		return itemFree;
+	}
+	
 }
+

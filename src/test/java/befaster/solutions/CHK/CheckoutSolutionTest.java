@@ -1,11 +1,10 @@
 package befaster.solutions.CHK;
 
-import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runners.Parameterized.Parameters;
 
 public class CheckoutSolutionTest {
 	
@@ -24,6 +23,7 @@ public class CheckoutSolutionTest {
 //		assertThat(checkout.checkout("A,A,A,B,B,C,D"), equalTo(210));
 	}
 }
+
 
 
 

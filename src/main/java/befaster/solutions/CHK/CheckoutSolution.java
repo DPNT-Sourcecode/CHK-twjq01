@@ -75,6 +75,7 @@ public class CheckoutSolution {
 							Optional<ItemDiscount> itemDiscountOptional = getItemDiscount(itemDiscountList, shoppingQuantity.intValue());
 							if(itemDiscountOptional.isPresent()) {
 								ItemDiscount itemDiscount = itemDiscountOptional.get();
+								
 								if(StringUtils.isNotEmpty(itemDiscount.getItemFree())) {
 									
 									totalPrice += (itemDiscount.getItemQuantity() * itemPriceMap.get(shoppingItem));
@@ -128,3 +129,4 @@ public class CheckoutSolution {
 		return Optional.empty();
 	}
 }
+

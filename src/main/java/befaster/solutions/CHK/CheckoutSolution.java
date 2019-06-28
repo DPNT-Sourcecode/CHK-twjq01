@@ -21,7 +21,7 @@ public class CheckoutSolution {
     		List<String> shoppingCartItemList = Arrays.stream(skus.split("\\s*,\\s*")).collect(Collectors.toList());
 
     		try {
-    			
+
     			// Validate Input
     			validateShoppingCartItems(shoppingCartItemList);
 
@@ -89,4 +89,5 @@ public class CheckoutSolution {
 		}
 	}
 }
+
 

@@ -75,11 +75,7 @@ public class CheckoutSolution {
 						Optional<ItemDiscount> itemDiscountOptional = getItemDiscount(itemDiscountList, shoppingQuantity.intValue());
 						
 						if(itemDiscountOptional.isPresent()) {
-							
-						}
-						
-						for (ItemDiscount itemDiscount : itemDiscountList) {
-
+							ItemDiscount itemDiscount = itemDiscountOptional.get();
 							if(itemDiscount.getItemQuantity() < shoppingQuantity.intValue()) {
 								totalPrice += ((shoppingQuantity.intValue() % itemDiscount.getItemQuantity()) * itemPriceMap.get(shoppingItem))
 										+ ((shoppingQuantity.intValue() / itemDiscount.getItemQuantity()) * itemDiscount.getItemPrice());
@@ -88,6 +84,7 @@ public class CheckoutSolution {
 							}else {
 								totalPrice += (shoppingQuantity.intValue() * itemPriceMap.get(shoppingItem));
 							}
+							shoppingQuantity -= itemDiscount.getItemQuantity();
 						}
 					}
 				}else {
@@ -107,6 +104,7 @@ public class CheckoutSolution {
 		return Optional.empty();
 	}
 }
+
 
 
 

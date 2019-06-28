@@ -33,10 +33,11 @@ public class ItemDataCollection {
 	public static Map<String, ItemDiscount> getItemDiscountMap() {
 		Map<String, ItemDiscount> itemDiscountMap = new TreeMap<>();
 		
-		itemDiscountMap.put("A", new ItemDiscount("A", 3, 160));
+		itemDiscountMap.put("A", new ItemDiscount("A", 3, 130));
 		itemDiscountMap.put("B", new ItemDiscount("B", 2, 45));
 		
 		return itemDiscountMap;
 	}
 
 }
+

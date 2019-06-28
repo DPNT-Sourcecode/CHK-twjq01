@@ -17,12 +17,13 @@ public class CheckoutSolutionTest {
 
 	@Test
 	public void checkoutTest() {
-//		assertThat(checkout.checkout("A,B,C,D"), equalTo(115));
-//		assertThat(checkout.checkout("A,A,B,C,D"), equalTo(165));
+		assertThat(checkout.checkout("A,B,C,D"), equalTo(115));
+		assertThat(checkout.checkout("A,A,B,C,D"), equalTo(165));
 		assertThat(checkout.checkout("A,A,A,B,C,D"), equalTo(195));
-//		assertThat(checkout.checkout("A,A,A,B,B,C,D"), equalTo(210));
+		assertThat(checkout.checkout("A,A,A,B,B,C,D"), equalTo(210));
 	}
 }
+
 
 
 

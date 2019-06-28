@@ -47,7 +47,16 @@ public class CheckoutSolution {
 				
 				// Check for discount on Item
 				if(itemDiscountMap.containsKey(shoppingItem)) {
-					
+					ItemDiscount itemDiscount = itemDiscountMap.get(shoppingItem);
+					if(itemDiscount != null) {
+						if(itemDiscount.getItemQuantity() < shoppingQuantity) {
+							
+						}else if(itemDiscount.getItemQuantity() < shoppingQuantity) {
+							
+						}else {
+							
+						}
+					}
 				}else {
 					totalPrice += (shoppingQuantity.intValue() * itemPriceMap.get(shoppingItem));
 				}
@@ -56,6 +65,7 @@ public class CheckoutSolution {
 		}
 	}
 }
+
 
 
 

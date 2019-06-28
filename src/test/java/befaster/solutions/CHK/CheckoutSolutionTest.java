@@ -21,5 +21,3 @@ public class CheckoutSolutionTest {
 		assertThat(checkout.checkout("D"), equalTo(15));
 	}
 }
-
-

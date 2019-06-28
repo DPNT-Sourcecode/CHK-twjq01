@@ -32,11 +32,18 @@ public class CheckoutSolution {
     }
 
 	private void calculateTotalPriceForItems(Map<String, Long> itemQuantityMap) {
+		
 		if(MapUtils.isNotEmpty(itemQuantityMap)) {
+			
 			// Get Price for each Item here
 			Map<String, Integer> itemPriceMap = ItemDataCollection.getItemPriceMap();
 			System.out.println(itemPriceMap);
+			
+			// Get Item Offer here
+			
+			
 		}
 	}
 }
+
 

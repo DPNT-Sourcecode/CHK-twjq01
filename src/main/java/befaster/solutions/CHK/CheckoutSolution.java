@@ -4,13 +4,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class CheckoutSolution {
 	
 	private Integer totalPrice = 0;
 	
     public Integer checkout(String skus) {
     	
-    	if(skus != null || skus.length() != 0) {
+    	if(StringUtils.isNotEmpty(skus)) {
     		
     		// Prepare Cart Item List here
     		List<String> shoppingCartItemList = Arrays.stream(skus.split("\\s*,\\s*")).collect(Collectors.toList());
@@ -22,5 +24,6 @@ public class CheckoutSolution {
     	return totalPrice;
     }
 }
+
 
 

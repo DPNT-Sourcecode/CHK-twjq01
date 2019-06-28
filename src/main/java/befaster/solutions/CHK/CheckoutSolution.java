@@ -16,21 +16,27 @@ public class CheckoutSolution {
     public Integer checkout(String skus) {
     	
     	if(StringUtils.isNotEmpty(skus)) {
-    		
+
     		// Prepare Cart Item List here
     		List<String> shoppingCartItemList = Arrays.stream(skus.split("\\s*,\\s*")).collect(Collectors.toList());
-    		
+
     		try {
-    		validateShoppingCartItems(shoppingCartItemList);
-    		}catch() {
     			
+    			// Validate Input
+    			validateShoppingCartItems(shoppingCartItemList);
+
+
+    			// Prepare Item Quantity Map here
+    			Map<String, Long> itemQuantityMap = ItemDataCollection.getItemQuantityMap(shoppingCartItemList);
+
+    			// Now Calculate Total Price
+    			calculateTotalPriceForItems(itemQuantityMap);
+
+    		}catch(IllegalArgumentException e) {
+    			// Log Message here
+    			System.out.println(e.getMessage());
+    			totalPrice = -1;
     		}
-    		
-    		// Prepare Item Quantity Map here
-    		Map<String, Long> itemQuantityMap = ItemDataCollection.getItemQuantityMap(shoppingCartItemList);
-    		
-    		// Now Calculate Total Price
-    		calculateTotalPriceForItems(itemQuantityMap);
     	}
     	
     	return totalPrice;
@@ -40,7 +46,7 @@ public class CheckoutSolution {
 		if(CollectionUtils.isNotEmpty(shoppingCartItemList)) {
 			for (String item : shoppingCartItemList) {
 				if(!ItemDataCollection.getValidItems().contains(item)) {
-					throw new IllegalArgumentException();
+					throw new IllegalArgumentException("Invalid Item in Shopping Cart");
 				}
 			}
 		}
@@ -83,3 +89,4 @@ public class CheckoutSolution {
 		}
 	}
 }
+

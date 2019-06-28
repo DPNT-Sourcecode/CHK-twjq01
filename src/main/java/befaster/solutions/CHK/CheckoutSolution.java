@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 
 public class CheckoutSolution {
@@ -24,13 +25,16 @@ public class CheckoutSolution {
     		System.out.println(itemQuantityMap);
     		
     		// Now Calculate Total Price
+    		calculateTotalPriceForItems(itemQuantityMap);
     	}
     	
     	return totalPrice;
     }
+
+	private void calculateTotalPriceForItems(Map<String, Long> itemQuantityMap) {
+		if(MapUtils.isNotEmpty(itemQuantityMap)) {
+			// Get Price for each Item here
+			
+		}
+	}
 }
-
-
-
-
-

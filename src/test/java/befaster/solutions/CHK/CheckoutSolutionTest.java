@@ -21,6 +21,3 @@ public class CheckoutSolutionTest {
 		assertThat(checkout.checkout("A,B,C,A,B,D"), equalTo(0));
 	}
 }
-
-
-

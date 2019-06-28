@@ -101,6 +101,7 @@ public class CheckoutSolution {
 									}
 								}else {
 									totalPrice += itemDiscount.getItemPrice();
+									itemQuantityMap.computeIfPresent(itemDiscount.getItemName(), (key, value) -> value > 0 ? value - itemDiscount.getItemQuantity() : 0);
 								}
 								
 								shoppingQuantity -= itemDiscount.getItemQuantity();
@@ -129,4 +130,5 @@ public class CheckoutSolution {
 		return Optional.empty();
 	}
 }
+
 

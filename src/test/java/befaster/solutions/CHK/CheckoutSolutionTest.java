@@ -25,4 +25,3 @@ public class CheckoutSolutionTest {
 		assertThat(checkout.checkout("A,A,A,A,B,B,B,C,D"), equalTo(290));
 	}
 }
-

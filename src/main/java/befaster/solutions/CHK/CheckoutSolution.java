@@ -2,6 +2,7 @@ package befaster.solutions.CHK;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.MapUtils;
@@ -88,4 +89,9 @@ public class CheckoutSolution {
 			// End Calculation here
 		}
 	}
+	
+	private Optional<ItemDiscount> getItemDiscount(List<ItemDiscount> itemDiscountList, Integer shoppingItemQuantity) {
+		
+	}
 }
+

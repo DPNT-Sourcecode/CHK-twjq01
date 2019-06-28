@@ -20,7 +20,11 @@ public class CheckoutSolution {
     		// Prepare Cart Item List here
     		List<String> shoppingCartItemList = Arrays.stream(skus.split("\\s*,\\s*")).collect(Collectors.toList());
     		
+    		try {
     		validateShoppingCartItems(shoppingCartItemList);
+    		}catch() {
+    			
+    		}
     		
     		// Prepare Item Quantity Map here
     		Map<String, Long> itemQuantityMap = ItemDataCollection.getItemQuantityMap(shoppingCartItemList);
@@ -34,7 +38,11 @@ public class CheckoutSolution {
 
 	private void validateShoppingCartItems(List<String> shoppingCartItemList) {
 		if(CollectionUtils.isNotEmpty(shoppingCartItemList)) {
-			
+			for (String item : shoppingCartItemList) {
+				if(!ItemDataCollection.getValidItems().contains(item)) {
+					throw new IllegalArgumentException();
+				}
+			}
 		}
 	}
 
@@ -75,6 +83,3 @@ public class CheckoutSolution {
 		}
 	}
 }
-
-
-

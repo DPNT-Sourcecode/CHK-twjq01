@@ -17,7 +17,8 @@ public class CheckoutSolutionTest {
 
 	@Test
 	public void checkoutTest() {
-		assertThat(checkout.checkout("A,B,C,D,E"), equalTo(-1));
+		assertThat(checkout.checkout("A"), equalTo(50));
+		assertThat(checkout.checkout("E"), equalTo(-1));
 		assertThat(checkout.checkout("A,B,C,D"), equalTo(115));
 		assertThat(checkout.checkout("A,A,B,C,D"), equalTo(165));
 		assertThat(checkout.checkout("A,A,A,B,C,D"), equalTo(195));
@@ -25,3 +26,4 @@ public class CheckoutSolutionTest {
 		assertThat(checkout.checkout("A,A,A,A,B,B,B,C,D"), equalTo(290));
 	}
 }
+

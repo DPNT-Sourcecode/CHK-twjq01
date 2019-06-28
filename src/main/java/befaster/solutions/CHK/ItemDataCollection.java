@@ -1,5 +1,6 @@
 package befaster.solutions.CHK;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -14,11 +15,13 @@ import org.apache.commons.lang3.StringUtils;
 public class ItemDataCollection {
 	
 	public static List<String> prepareShoppingCartItemList(String skus) {
+		List<String> shoppingCartItemList = new ArrayList<>();
 		if(StringUtils.isNotEmpty(skus)) {
 			for (Character c : skus.toCharArray()) {
-				
+				shoppingCartItemList.add(String.valueOf(c));
 			}
 		}
+		return shoppingCartItemList;
 	}
 	
 	public static Map<String, Integer> getItemPriceMap() {
@@ -54,4 +57,5 @@ public class ItemDataCollection {
 	}
 
 }
+
 

@@ -1,9 +1,7 @@
 package befaster.solutions.CHK;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.MapUtils;
@@ -18,7 +16,7 @@ public class CheckoutSolution {
     	if(StringUtils.isNotEmpty(skus)) {
 
     		// Prepare Cart Item List here
-    		List<String> shoppingCartItemList = Arrays.stream(skus.split("\\s*,\\s*")).collect(Collectors.toList());
+    		List<String> shoppingCartItemList = ItemDataCollection.prepareShoppingCartItemList(skus);
 
     		try {
 
@@ -59,7 +57,6 @@ public class CheckoutSolution {
 			
 			// Get Price for each Item here
 			Map<String, Integer> itemPriceMap = ItemDataCollection.getItemPriceMap();
-			System.out.println(itemPriceMap);
 			
 			// Get Item Offer here
 			Map<String, ItemDiscount> itemDiscountMap = ItemDataCollection.getItemDiscountMap();
@@ -89,3 +86,4 @@ public class CheckoutSolution {
 		}
 	}
 }
+

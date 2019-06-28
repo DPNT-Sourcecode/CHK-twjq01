@@ -68,14 +68,16 @@ public class CheckoutSolution {
 					List<ItemDiscount> itemDiscountList = itemDiscountMap.get(shoppingItem);
 					
 					if(CollectionUtils.isNotEmpty(itemDiscountList)) {
-						
-						if(itemDiscount.getItemQuantity() < shoppingQuantity.intValue()) {
-							totalPrice += ((shoppingQuantity.intValue() % itemDiscount.getItemQuantity()) * itemPriceMap.get(shoppingItem))
-									+ ((shoppingQuantity.intValue() / itemDiscount.getItemQuantity()) * itemDiscount.getItemPrice());
-						}else if(itemDiscount.getItemQuantity() == shoppingQuantity.intValue()) {
-							totalPrice += itemDiscount.getItemPrice();
-						}else {
-							totalPrice += (shoppingQuantity.intValue() * itemPriceMap.get(shoppingItem));
+						for (ItemDiscount itemDiscount : itemDiscountList) {
+
+							if(itemDiscount.getItemQuantity() < shoppingQuantity.intValue()) {
+								totalPrice += ((shoppingQuantity.intValue() % itemDiscount.getItemQuantity()) * itemPriceMap.get(shoppingItem))
+										+ ((shoppingQuantity.intValue() / itemDiscount.getItemQuantity()) * itemDiscount.getItemPrice());
+							}else if(itemDiscount.getItemQuantity() == shoppingQuantity.intValue()) {
+								totalPrice += itemDiscount.getItemPrice();
+							}else {
+								totalPrice += (shoppingQuantity.intValue() * itemPriceMap.get(shoppingItem));
+							}
 						}
 					}
 				}else {
@@ -86,4 +88,5 @@ public class CheckoutSolution {
 		}
 	}
 }
+
 

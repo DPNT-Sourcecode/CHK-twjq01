@@ -31,9 +31,14 @@ public class ItemDataCollection {
 	}
 	
 	public static Map<String, ItemDiscount> getItemDiscountMap() {
+		Map<String, ItemDiscount> itemDiscountMap = new TreeMap<>();
 		
+		
+		
+		return itemDiscountMap;
 	}
 
 }
+
 
 

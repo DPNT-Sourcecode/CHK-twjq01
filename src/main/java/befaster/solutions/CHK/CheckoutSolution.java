@@ -69,22 +69,17 @@ public class CheckoutSolution {
 				// Check for discount on Item
 				if(itemDiscountMap.containsKey(shoppingItem)) {
 					List<ItemDiscount> itemDiscountList = itemDiscountMap.get(shoppingItem);
-					
+
 					if(CollectionUtils.isNotEmpty(itemDiscountList)) {
-						
-						Optional<ItemDiscount> itemDiscountOptional = getItemDiscount(itemDiscountList, shoppingQuantity.intValue());
-						
-						if(itemDiscountOptional.isPresent()) {
-							ItemDiscount itemDiscount = itemDiscountOptional.get();
-							if(itemDiscount.getItemQuantity() < shoppingQuantity.intValue()) {
-								totalPrice += ((shoppingQuantity.intValue() % itemDiscount.getItemQuantity()) * itemPriceMap.get(shoppingItem))
-										+ ((shoppingQuantity.intValue() / itemDiscount.getItemQuantity()) * itemDiscount.getItemPrice());
-							}else if(itemDiscount.getItemQuantity() == shoppingQuantity.intValue()) {
+						while(shoppingQuantity > 0) {
+							Optional<ItemDiscount> itemDiscountOptional = getItemDiscount(itemDiscountList, shoppingQuantity.intValue());
+							if(itemDiscountOptional.isPresent()) {
+								ItemDiscount itemDiscount = itemDiscountOptional.get();
 								totalPrice += itemDiscount.getItemPrice();
+								shoppingQuantity -= itemDiscount.getItemQuantity();
 							}else {
 								totalPrice += (shoppingQuantity.intValue() * itemPriceMap.get(shoppingItem));
 							}
-							shoppingQuantity -= itemDiscount.getItemQuantity();
 						}
 					}
 				}else {
@@ -104,6 +99,7 @@ public class CheckoutSolution {
 		return Optional.empty();
 	}
 }
+
 
 
 

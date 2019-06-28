@@ -17,16 +17,15 @@ public class CheckoutSolutionTest {
 
 	@Test
 	public void checkoutTest() {
-		assertThat(checkout.checkout("AAAAAAAAA"), equalTo(380));
-//		assertThat(checkout.checkout("E"), equalTo(40));
-//		assertThat(checkout.checkout("F"), equalTo(-1));
-//		assertThat(checkout.checkout("ABCD"), equalTo(115));
-//		assertThat(checkout.checkout("ABCDE"), equalTo(155));
-//		assertThat(checkout.checkout("AABCD"), equalTo(165));
-//		assertThat(checkout.checkout("AAABCD"), equalTo(195));
-//		assertThat(checkout.checkout("AAABBCD"), equalTo(210));
-//		assertThat(checkout.checkout("AAAABBBCD"), equalTo(290));
-//		assertThat(checkout.checkout("AAAAABBBCD"), equalTo(310));
+		assertThat(checkout.checkout("E"), equalTo(40));
+		assertThat(checkout.checkout("F"), equalTo(-1));
+		assertThat(checkout.checkout("ABCD"), equalTo(115));
+		assertThat(checkout.checkout("ABCDE"), equalTo(155));
+		assertThat(checkout.checkout("AABCD"), equalTo(165));
+		assertThat(checkout.checkout("AAABCD"), equalTo(195));
+		assertThat(checkout.checkout("AAABBCD"), equalTo(210));
+		assertThat(checkout.checkout("AAAABBBCD"), equalTo(290));
+		assertThat(checkout.checkout("AAAAABBBCD"), equalTo(310));
+		assertThat(checkout.checkout("AAAAAAAAABEE"), equalTo(460));
 	}
 }
-

@@ -1,10 +1,16 @@
 package befaster.solutions.CHK;
 
-import befaster.runner.SolutionNotImplementedException;
-
 public class CheckoutSolution {
 	
+	private Integer totalPrice = 0;
+	
     public Integer checkout(String skus) {
-        throw new SolutionNotImplementedException();
+    	
+    	if(skus != null || skus.length() != 0) {
+    		
+    	}
+    	
+    	return totalPrice;
     }
 }
+

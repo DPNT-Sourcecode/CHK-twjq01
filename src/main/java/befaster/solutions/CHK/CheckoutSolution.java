@@ -68,6 +68,7 @@ public class CheckoutSolution {
 					List<ItemDiscount> itemDiscountList = itemDiscountMap.get(shoppingItem);
 					
 					if(CollectionUtils.isNotEmpty(itemDiscountList)) {
+						
 						for (ItemDiscount itemDiscount : itemDiscountList) {
 
 							if(itemDiscount.getItemQuantity() < shoppingQuantity.intValue()) {

@@ -17,9 +17,11 @@ public class CheckoutSolution {
     		
     		// Prepare Cart Item List here
     		List<String> shoppingCartItemList = Arrays.stream(skus.split("\\s*,\\s*")).collect(Collectors.toList());
+    		System.out.println(shoppingCartItemList);
     		
     		// Prepare Item Quantity Map here
     		Map<String, Long> itemQuantityMap = ItemDataCollection.getItemQuantityMap(shoppingCartItemList);
+    		System.out.println(itemQuantityMap);
     		
     		// Now Calculate Total Price
     	}
@@ -27,6 +29,7 @@ public class CheckoutSolution {
     	return totalPrice;
     }
 }
+
 
 
 

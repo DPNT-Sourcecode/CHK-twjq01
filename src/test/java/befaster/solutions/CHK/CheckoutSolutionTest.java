@@ -5,6 +5,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runners.Parameterized.Parameters;
 
 public class CheckoutSolutionTest {
 	
@@ -17,8 +18,9 @@ public class CheckoutSolutionTest {
 
 	@Test
 	public void checkoutTest() {
-		assertThat(checkout.checkout("A,B,C"), equalTo(0));
+		assertThat(checkout.checkout("A,B,C,A,B,D"), equalTo(0));
 	}
 }
+
 
 

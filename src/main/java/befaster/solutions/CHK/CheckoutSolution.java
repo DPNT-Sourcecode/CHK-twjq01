@@ -128,4 +128,3 @@ public class CheckoutSolution {
 		return Optional.empty();
 	}
 }
-

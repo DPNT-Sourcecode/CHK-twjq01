@@ -9,10 +9,10 @@ import org.apache.commons.lang3.StringUtils;
 
 public class CheckoutSolution {
 	
-	private Integer totalPrice = 0;
+	private Integer totalPrice;
 	
     public Integer checkout(String skus) {
-    	
+    	totalPrice = 0;
     	if(StringUtils.isNotEmpty(skus)) {
 
     		// Prepare Cart Item List here
@@ -53,7 +53,7 @@ public class CheckoutSolution {
 	private void calculateTotalPriceForItems(Map<String, Long> itemQuantityMap) {
 		
 		if(MapUtils.isNotEmpty(itemQuantityMap)) {
-			totalPrice = 0;
+			//totalPrice = 0;
 			
 			// Get Price for each Item here
 			Map<String, Integer> itemPriceMap = ItemDataCollection.getItemPriceMap();
@@ -86,4 +86,5 @@ public class CheckoutSolution {
 		}
 	}
 }
+
 

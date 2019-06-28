@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -18,11 +19,11 @@ public class CheckoutSolution {
     		
     		// Prepare Cart Item List here
     		List<String> shoppingCartItemList = Arrays.stream(skus.split("\\s*,\\s*")).collect(Collectors.toList());
-    		System.out.println(shoppingCartItemList);
+    		
+    		validateShoppingCartItems(shoppingCartItemList);
     		
     		// Prepare Item Quantity Map here
     		Map<String, Long> itemQuantityMap = ItemDataCollection.getItemQuantityMap(shoppingCartItemList);
-    		System.out.println(itemQuantityMap);
     		
     		// Now Calculate Total Price
     		calculateTotalPriceForItems(itemQuantityMap);
@@ -30,6 +31,12 @@ public class CheckoutSolution {
     	
     	return totalPrice;
     }
+
+	private void validateShoppingCartItems(List<String> shoppingCartItemList) {
+		if(CollectionUtils.isNotEmpty(shoppingCartItemList)) {
+			
+		}
+	}
 
 	private void calculateTotalPriceForItems(Map<String, Long> itemQuantityMap) {
 		
@@ -68,5 +75,6 @@ public class CheckoutSolution {
 		}
 	}
 }
+
 
 

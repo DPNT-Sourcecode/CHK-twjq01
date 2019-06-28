@@ -5,9 +5,9 @@ public class ItemDiscount {
 	private String itemName;
 	private Integer itemQuantity;
 	private Integer itemPrice;
-	private ItemDiscount itemFree;
+	private String itemFree;
 
-	public ItemDiscount(String itemName, Integer itemQuantity, Integer itemPrice, ItemDiscount itemFree) {
+	public ItemDiscount(String itemName, Integer itemQuantity, Integer itemPrice, String itemFree) {
 		this.itemName = itemName;
 		this.itemQuantity = itemQuantity;
 		this.itemPrice = itemPrice;
@@ -26,8 +26,9 @@ public class ItemDiscount {
 		return itemPrice;
 	}
 
-	public ItemDiscount getItemFree() {
+	public String getItemFree() {
 		return itemFree;
 	}
 	
 }
+

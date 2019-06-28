@@ -1,5 +1,6 @@
 package befaster.solutions.CHK;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +23,10 @@ public class ItemDataCollection {
 		return itemPriceMap;
 	}
 	
+	public static List<String> getValidItems() {
+		return Arrays.asList("A","B","C","D");
+	}
+	
 	public static Map<String, Long> getItemQuantityMap(List<String> shoppingCartItemList) {
 		if(CollectionUtils.isNotEmpty(shoppingCartItemList)) {
 			return shoppingCartItemList.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
@@ -40,4 +45,5 @@ public class ItemDataCollection {
 	}
 
 }
+
 

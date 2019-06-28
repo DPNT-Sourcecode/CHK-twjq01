@@ -50,15 +50,14 @@ public class CheckoutSolution {
 					ItemDiscount itemDiscount = itemDiscountMap.get(shoppingItem);
 					if(itemDiscount != null) {
 						
-						if(itemDiscount.getItemQuantity() < shoppingQuantity) {
+						if(itemDiscount.getItemQuantity() < shoppingQuantity.intValue()) {
 							totalPrice += ((shoppingQuantity.intValue() % itemDiscount.getItemQuantity()) * itemPriceMap.get(shoppingItem))
 									+ ((shoppingQuantity.intValue() / itemDiscount.getItemQuantity()) * itemDiscount.getItemPrice());
+						}else if(itemDiscount.getItemQuantity() == shoppingQuantity.intValue()) {
+							totalPrice += itemDiscount.getItemPrice();
+						}else {
+							totalPrice += (shoppingQuantity.intValue() * itemPriceMap.get(shoppingItem));
 						}
-//						else if(itemDiscount.getItemQuantity() == shoppingQuantity) {
-//							
-//						}else {
-//							
-//						}
 					}
 				}else {
 					totalPrice += (shoppingQuantity.intValue() * itemPriceMap.get(shoppingItem));
@@ -68,3 +67,4 @@ public class CheckoutSolution {
 		}
 	}
 }
+

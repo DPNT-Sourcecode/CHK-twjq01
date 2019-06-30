@@ -170,7 +170,3 @@ public class CheckoutSolution {
 		return checkFlag;
 	}
 }
-
-
-
-

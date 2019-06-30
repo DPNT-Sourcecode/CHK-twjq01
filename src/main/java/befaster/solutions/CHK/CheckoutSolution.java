@@ -106,16 +106,16 @@ public class CheckoutSolution {
 										}
 									}
 								}else {
-//									if(!isFreeDiscountExist(itemDiscountMap, shoppingItem, itemQuantityMap)) {
+									if(!isFreeDiscountExist(itemDiscountMap, shoppingItem, itemQuantityMap, shoppingQuantity.intValue())) {
 										totalPrice -= (itemDiscount.getItemQuantity() * itemPriceMap.get(shoppingItem)) - itemDiscount.getItemPrice();
-//									}else if(shoppingQuantity > itemDiscount.getItemQuantity()){
-//										if(CollectionUtils.isEmpty(alreadyAppliedDiscount)) {
-//											alreadyAppliedDiscount.add(itemDiscount);
-//											totalPrice -= itemDiscount.getItemPrice();
-//										}else if(!alreadyAppliedDiscount.contains(itemDiscount)) {
-//											totalPrice -= itemDiscount.getItemPrice();
-//										}
-//									}
+									}else if(shoppingQuantity > itemDiscount.getItemQuantity()){
+										if(CollectionUtils.isEmpty(alreadyAppliedDiscount)) {
+											alreadyAppliedDiscount.add(itemDiscount);
+											totalPrice -= itemDiscount.getItemPrice();
+										}else if(!alreadyAppliedDiscount.contains(itemDiscount)) {
+											totalPrice -= itemDiscount.getItemPrice();
+										}
+									}
 								}
 								shoppingQuantity -= itemDiscount.getItemQuantity();
 							}else {
@@ -138,7 +138,7 @@ public class CheckoutSolution {
 		return Optional.empty();
 	}
 	
-	private boolean isFreeDiscountExist(Map<String, List<ItemDiscount>> itemDiscountMap, String shoppingItem, Map<String, Long> itemQuantityMap) {
+	private boolean isFreeDiscountExist(Map<String, List<ItemDiscount>> itemDiscountMap, String shoppingItem, Map<String, Long> itemQuantityMap, Integer shoppingQuantity) {
 		boolean checkFlag = false;
 		for(Map.Entry<String, List<ItemDiscount>> entry : itemDiscountMap.entrySet()) {
 			for (ItemDiscount value : entry.getValue()) {
@@ -153,3 +153,4 @@ public class CheckoutSolution {
 		return checkFlag;
 	}
 }
+

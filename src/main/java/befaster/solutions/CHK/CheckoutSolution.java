@@ -120,7 +120,8 @@ public class CheckoutSolution {
 										}
 									}
 								}else {
-									if(shoppingItem.equals("B") && itemQuantityMap.get("B").intValue() > 2) { 
+									if((shoppingItem.equals("B") && itemQuantityMap.get("B").intValue() > 2)
+											|| (shoppingItem.equals("Q") && itemQuantityMap.get("Q").intValue() > 3)) { 
 										totalPrice -= (itemDiscount.getItemQuantity() * itemPriceMap.get(shoppingItem)) - itemDiscount.getItemPrice();
 									}else if(!isFreeDiscountExist(itemDiscountMap, shoppingItem, itemQuantityMap)) {
 										totalPrice -= (itemDiscount.getItemQuantity() * itemPriceMap.get(shoppingItem)) - itemDiscount.getItemPrice();
@@ -169,4 +170,5 @@ public class CheckoutSolution {
 		return checkFlag;
 	}
 }
+
 

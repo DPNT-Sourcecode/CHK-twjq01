@@ -56,8 +56,7 @@ public class CheckoutSolution {
 	private void calculateTotalPriceForItems(Map<String, Long> itemQuantityMap) {
 		
 		if(MapUtils.isNotEmpty(itemQuantityMap)) {
-			System.out.println(itemQuantityMap);
-			
+						
 			// Get Price for each Item here
 			Map<String, Integer> itemPriceMap = ItemDataCollection.getItemPriceMap();
 			
@@ -66,7 +65,6 @@ public class CheckoutSolution {
 			
 			// Start Calculation here
 			itemQuantityMap.forEach((shoppingItem, shoppingQuantity) -> {
-				
 				// Check for discount on Item
 				if(itemDiscountMap.containsKey(shoppingItem)) {
 					List<ItemDiscount> itemDiscountList = itemDiscountMap.get(shoppingItem);
@@ -75,7 +73,6 @@ public class CheckoutSolution {
 							Optional<ItemDiscount> itemDiscountOptional = getItemDiscount(itemDiscountList, shoppingQuantity.intValue());
 							if(itemDiscountOptional.isPresent()) {
 								ItemDiscount itemDiscount = itemDiscountOptional.get();
-								
 								if(StringUtils.isNotEmpty(itemDiscount.getItemFree())) {
 									
 									totalPrice += (itemDiscount.getItemQuantity() * itemPriceMap.get(shoppingItem));
@@ -101,14 +98,11 @@ public class CheckoutSolution {
 									}
 								}else {
 									totalPrice += itemDiscount.getItemPrice();
-									itemQuantityMap.computeIfPresent(itemDiscount.getItemName(), (key, value) -> value > 0 ? value - itemDiscount.getItemQuantity() : 0);
 								}
 								
 								shoppingQuantity -= itemDiscount.getItemQuantity();
 							}else {
 								totalPrice += (shoppingQuantity.intValue() * itemPriceMap.get(shoppingItem));
-								int sQty = shoppingQuantity.intValue(); 
-								itemQuantityMap.computeIfPresent(shoppingItem, (key, value) -> value > 0 ? value - sQty : 0);
 								shoppingQuantity -= shoppingQuantity;
 							}
 						}
@@ -116,8 +110,6 @@ public class CheckoutSolution {
 				}else {
 					totalPrice += (shoppingQuantity.intValue() * itemPriceMap.get(shoppingItem));
 				}
-				
-				System.out.println("shoppingItem -->"+shoppingItem+ " totalPrice ::"+totalPrice);
 			});
 			// End Calculation here
 		}

@@ -32,6 +32,7 @@ public class ItemDataCollection {
 		itemPriceMap.put("C", 20);
 		itemPriceMap.put("D", 15);
 		itemPriceMap.put("E", 40);
+		itemPriceMap.put("F", 10);
 		
 		return itemPriceMap;
 	}
@@ -54,8 +55,10 @@ public class ItemDataCollection {
 		itemDiscountMap.put("A", Arrays.asList(new ItemDiscount("A", 3, 130, null), new ItemDiscount("A", 5, 200, null)));
 		itemDiscountMap.put("B", Arrays.asList(new ItemDiscount("B", 2, 45, null)));
 		itemDiscountMap.put("E", Arrays.asList(new ItemDiscount("E", 2, 0, "B")));
+		itemDiscountMap.put("F", Arrays.asList(new ItemDiscount("F", 2, 0, "F")));
 		
 		return itemDiscountMap;
 	}
 
 }
+

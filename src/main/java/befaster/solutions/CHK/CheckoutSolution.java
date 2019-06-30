@@ -145,10 +145,6 @@ public class CheckoutSolution {
 				if(StringUtils.isNotEmpty(value.getItemFree()) 
 						&& shoppingItem.equalsIgnoreCase(value.getItemFree()) 
 						&& itemQuantityMap.containsKey(value.getItemName())) {
-					
-					System.out.println("Cart ==>"+itemQuantityMap.get(value.getItemName()).intValue());
-					System.out.println("Dis ==>"+value.getItemQuantity());
-					
 					checkFlag = true;
 					break;
 				}
@@ -157,6 +153,7 @@ public class CheckoutSolution {
 		return checkFlag;
 	}
 }
+
 
 
 

@@ -35,6 +35,9 @@ public class CheckoutSolution {
 
     			// Now Calculate Total Price
     			calculateTotalPriceForItems(itemQuantityMap, itemPriceMap);
+    			
+    			// Now Calculate Discount here
+    			calculateDiscount(itemQuantityMap, itemPriceMap);
 
     		}catch(IllegalArgumentException e) {
     			// Log Message here
@@ -88,37 +91,34 @@ public class CheckoutSolution {
 							Optional<ItemDiscount> itemDiscountOptional = getItemDiscount(itemDiscountList, shoppingQuantity.intValue());
 							if(itemDiscountOptional.isPresent()) {
 								ItemDiscount itemDiscount = itemDiscountOptional.get();
-								
+
 								if(StringUtils.isNotEmpty(itemDiscount.getItemFree())) {
-									
-									totalPrice += (itemDiscount.getItemQuantity() * itemPriceMap.get(shoppingItem));
-									
 									if(itemQuantityMap.containsKey(itemDiscount.getItemFree())) {
-										
-										List<ItemDiscount> itemDiscountFreeList = itemDiscountMap.get(itemDiscount.getItemFree());
-										if(CollectionUtils.isNotEmpty(itemDiscountFreeList)) {
-											Integer freeItemCount = itemQuantityMap.get(itemDiscount.getItemFree()).intValue();
-											Optional<ItemDiscount> itemDiscountFreeOptional = getItemDiscount(itemDiscountFreeList, freeItemCount);
-											if(itemDiscountFreeOptional.isPresent()) {
-												ItemDiscount itemDiscountFree = itemDiscountFreeOptional.get();
-												totalPrice -= itemDiscountFree.getItemPrice();
-												itemQuantityMap.computeIfPresent(itemDiscount.getItemFree(), (key, value) -> value > 0 ? value - freeItemCount : 0);
-											}else {
+										if(shoppingQuantity > itemDiscount.getItemQuantity()) {
+											if(CollectionUtils.isEmpty(alreadyAppliedDiscount)) {
+												alreadyAppliedDiscount.add(itemDiscount);
 												totalPrice -= itemPriceMap.get(itemDiscount.getItemFree());
-												itemQuantityMap.computeIfPresent(itemDiscount.getItemFree(), (key, value) -> value > 0 ? value - 1 : 0);
+											}else if(!alreadyAppliedDiscount.contains(itemDiscount)) {
+												totalPrice -= itemPriceMap.get(itemDiscount.getItemFree());
 											}
-										}else {
+										}else if(!alreadyAppliedDiscount.stream().filter(aad -> aad.getItemName().equals(itemDiscount.getItemFree())).findFirst().isPresent()) {
 											totalPrice -= itemPriceMap.get(itemDiscount.getItemFree());
-											itemQuantityMap.computeIfPresent(itemDiscount.getItemFree(), (key, value) -> value > 0 ? value - 1 : 0);
 										}
 									}
 								}else {
-									totalPrice += itemDiscount.getItemPrice();
+									if(!isFreeDiscountExist(itemDiscountMap, shoppingItem, itemQuantityMap)) {
+										totalPrice -= (itemDiscount.getItemQuantity() * itemPriceMap.get(shoppingItem)) - itemDiscount.getItemPrice();
+									}else if(shoppingQuantity > itemDiscount.getItemQuantity()){
+										if(CollectionUtils.isEmpty(alreadyAppliedDiscount)) {
+											alreadyAppliedDiscount.add(itemDiscount);
+											totalPrice -= itemDiscount.getItemPrice();
+										}else if(!alreadyAppliedDiscount.contains(itemDiscount)) {
+											totalPrice -= itemDiscount.getItemPrice();
+										}
+									}
 								}
-								
 								shoppingQuantity -= itemDiscount.getItemQuantity();
 							}else {
-								totalPrice += (shoppingQuantity.intValue() * itemPriceMap.get(shoppingItem));
 								shoppingQuantity -= shoppingQuantity;
 							}
 						}
@@ -153,6 +153,7 @@ public class CheckoutSolution {
 		return checkFlag;
 	}
 }
+
 
 
 

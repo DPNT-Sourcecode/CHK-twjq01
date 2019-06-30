@@ -145,12 +145,15 @@ public class CheckoutSolution {
 				if(StringUtils.isNotEmpty(value.getItemFree()) 
 						&& shoppingItem.equalsIgnoreCase(value.getItemFree()) 
 						&& itemQuantityMap.containsKey(value.getItemName())) {
-					checkFlag = true;
-					break;
+					if(shoppingQuantity != itemQuantityMap.get(value.getItemName()).intValue()) {
+						checkFlag = true;
+						break;
+					}
 				}
 			}
 		}
 		return checkFlag;
 	}
 }
+
 

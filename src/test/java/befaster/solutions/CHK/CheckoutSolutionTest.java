@@ -32,10 +32,11 @@ public class CheckoutSolutionTest {
 //		assertThat(checkout.checkout("EEEEBB"), equalTo(160));
 //		assertThat(checkout.checkout("BEBEEE"), equalTo(160));
 		assertThat(checkout.checkout("ABCDECBAABCABBAAAEEAA"), equalTo(665));
-//		assertThat(checkout.checkout("ABCDEABCDE"), equalTo(280));
+		assertThat(checkout.checkout("ABCDEABCDE"), equalTo(280));
 //		assertThat(checkout.checkout("ABCDEABCDE"), equalTo(280));
 //		assertThat(checkout.checkout("CCADDEEBBA"), equalTo(280));
 //		assertThat(checkout.checkout("AAAAAEEBAAABB"), equalTo(455));
 	}
 }
+
 

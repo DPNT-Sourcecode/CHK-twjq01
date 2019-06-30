@@ -106,7 +106,7 @@ public class CheckoutSolution {
 										}
 									}
 								}else {
-									if(!isFreeDiscountExist(itemDiscountMap, shoppingItem, itemQuantityMap, shoppingQuantity.intValue())) {
+									if(!isFreeDiscountExist(itemDiscountMap, shoppingItem, itemQuantityMap)) {
 										totalPrice -= (itemDiscount.getItemQuantity() * itemPriceMap.get(shoppingItem)) - itemDiscount.getItemPrice();
 									}else if(shoppingQuantity > itemDiscount.getItemQuantity()){
 										if(CollectionUtils.isEmpty(alreadyAppliedDiscount)) {
@@ -138,22 +138,21 @@ public class CheckoutSolution {
 		return Optional.empty();
 	}
 	
-	private boolean isFreeDiscountExist(Map<String, List<ItemDiscount>> itemDiscountMap, String shoppingItem, Map<String, Long> itemQuantityMap, Integer shoppingQuantity) {
+	private boolean isFreeDiscountExist(Map<String, List<ItemDiscount>> itemDiscountMap, String shoppingItem, Map<String, Long> itemQuantityMap) {
 		boolean checkFlag = false;
 		for(Map.Entry<String, List<ItemDiscount>> entry : itemDiscountMap.entrySet()) {
 			for (ItemDiscount value : entry.getValue()) {
 				if(StringUtils.isNotEmpty(value.getItemFree()) 
 						&& shoppingItem.equalsIgnoreCase(value.getItemFree()) 
 						&& itemQuantityMap.containsKey(value.getItemName())) {
-					if(shoppingQuantity != itemQuantityMap.get(value.getItemName()).intValue()) {
-						checkFlag = true;
-						break;
-					}
+					checkFlag = true;
+					break;
 				}
 			}
 		}
 		return checkFlag;
 	}
 }
+
 
 

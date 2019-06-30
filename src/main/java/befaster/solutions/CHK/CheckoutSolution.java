@@ -147,7 +147,7 @@ public class CheckoutSolution {
 						&& itemQuantityMap.containsKey(value.getItemName())) {
 					
 					System.out.println("Cart ==>"+itemQuantityMap.get(value.getItemName()).intValue());
-					System.out.println("Dis ==>"+itemQuantityMap.get(value.getItemQuantity()));
+					System.out.println("Dis ==>"+value.getItemQuantity());
 					
 					checkFlag = true;
 					break;
@@ -157,5 +157,6 @@ public class CheckoutSolution {
 		return checkFlag;
 	}
 }
+
 
 

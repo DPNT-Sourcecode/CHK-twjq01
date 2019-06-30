@@ -35,12 +35,15 @@ public class ItemDataCollection {
 		itemPriceMap.put("F", 10);
 		itemPriceMap.put("G", 20);
 		itemPriceMap.put("H", 10);
+		itemPriceMap.put("I", 35);
+		itemPriceMap.put("J", 60);
+		itemPriceMap.put("K", 80);
 		
 		return itemPriceMap;
 	}
 	
 	public static List<String> getValidItems() {
-		return Arrays.asList("A","B","C","D","E","F","G","H");
+		return Arrays.asList("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
 	}
 	
 	public static Map<String, Long> getItemQuantityMap(List<String> shoppingCartItemList) {
@@ -59,8 +62,10 @@ public class ItemDataCollection {
 		itemDiscountMap.put("E", Arrays.asList(new ItemDiscount("E", 2, 0, "B")));
 		itemDiscountMap.put("F", Arrays.asList(new ItemDiscount("F", 2, 0, "F")));
 		itemDiscountMap.put("H", Arrays.asList(new ItemDiscount("H", 5, 45, null), new ItemDiscount("H", 10, 80, null)));
+		itemDiscountMap.put("K", Arrays.asList(new ItemDiscount("K", 2, 150, null)));
 		
 		return itemDiscountMap;
 	}
 
 }
+

@@ -85,6 +85,7 @@ public class CheckoutSolution {
 							Optional<ItemDiscount> itemDiscountOptional = getItemDiscount(itemDiscountList, shoppingQuantity.intValue());
 							if(itemDiscountOptional.isPresent()) {
 								ItemDiscount itemDiscount = itemDiscountOptional.get();
+								
 								if(StringUtils.isNotEmpty(itemDiscount.getItemFree())) {
 									
 									totalPrice += (itemDiscount.getItemQuantity() * itemPriceMap.get(shoppingItem));
@@ -133,7 +134,23 @@ public class CheckoutSolution {
 		}
 		return Optional.empty();
 	}
+	
+	private boolean isFreeDiscountExist(Map<String, List<ItemDiscount>> itemDiscountMap, String shoppingItem, Map<String, Long> itemQuantityMap) {
+		boolean checkFlag = false;
+		for(Map.Entry<String, List<ItemDiscount>> entry : itemDiscountMap.entrySet()) {
+			for (ItemDiscount value : entry.getValue()) {
+				if(StringUtils.isNotEmpty(value.getItemFree()) 
+						&& shoppingItem.equalsIgnoreCase(value.getItemFree()) 
+						&& itemQuantityMap.containsKey(value.getItemName())) {
+					checkFlag = true;
+					break;
+				}
+			}
+		}
+		return checkFlag;
+	}
 }
+
 
 
 

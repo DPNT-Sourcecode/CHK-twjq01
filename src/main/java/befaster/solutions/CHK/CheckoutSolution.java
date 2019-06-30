@@ -101,17 +101,17 @@ public class CheckoutSolution {
 											}else if(!alreadyAppliedDiscount.contains(itemDiscount)) {
 												totalPrice -= itemPriceMap.get(itemDiscount.getItemFree());
 											}else if(shoppingItem.equals("F") || shoppingItem.equals("U")) {
-												if(itemQuantityMap.get("F").intValue() > 2) {
+												if(itemQuantityMap.get("F") != null && itemQuantityMap.get("F").intValue() > 2) {
 													totalPrice -= itemPriceMap.get(itemDiscount.getItemFree());
-												}else if(itemQuantityMap.get("U").intValue() > 3) {
-													
+												}else if(itemQuantityMap.get("U") != null && itemQuantityMap.get("U").intValue() > 3) {
+													totalPrice -= itemPriceMap.get(itemDiscount.getItemFree());
 												}
 											}
 										}else if(!alreadyAppliedDiscount.stream().filter(aad -> aad != null && aad.getItemName().equalsIgnoreCase(itemDiscount.getItemFree())).findFirst().isPresent()) {
 											if(shoppingItem.equals("F") || shoppingItem.equals("U")) {
-												if(itemQuantityMap.get("F").intValue() > 2 && shoppingQuantity != 2) {
+												if(itemQuantityMap.get("F") != null && itemQuantityMap.get("F").intValue() > 2 && shoppingQuantity != 2) {
 													totalPrice -= itemPriceMap.get(itemDiscount.getItemFree());
-												}else if(itemQuantityMap.get("U").intValue() > 3 && shoppingQuantity != 3) {
+												}else if(itemQuantityMap.get("U") != null && itemQuantityMap.get("U").intValue() > 3 && shoppingQuantity != 3) {
 													totalPrice -= itemPriceMap.get(itemDiscount.getItemFree());
 												}
 											}else {
@@ -120,8 +120,8 @@ public class CheckoutSolution {
 										}
 									}
 								}else {
-									if((shoppingItem.equals("B") && itemQuantityMap.get("B").intValue() > 2)
-											|| (shoppingItem.equals("Q") && itemQuantityMap.get("Q").intValue() > 3)) { 
+									if((shoppingItem.equals("B") && itemQuantityMap.get("B") != null && itemQuantityMap.get("B").intValue() > 2)
+											|| (shoppingItem.equals("Q") && itemQuantityMap.get("Q") != null && itemQuantityMap.get("Q").intValue() > 3)) { 
 										totalPrice -= (itemDiscount.getItemQuantity() * itemPriceMap.get(shoppingItem)) - itemDiscount.getItemPrice();
 									}else if(!isFreeDiscountExist(itemDiscountMap, shoppingItem, itemQuantityMap)) {
 										totalPrice -= (itemDiscount.getItemQuantity() * itemPriceMap.get(shoppingItem)) - itemDiscount.getItemPrice();
@@ -170,6 +170,7 @@ public class CheckoutSolution {
 		return checkFlag;
 	}
 }
+
 
 
 

@@ -85,13 +85,14 @@ public class ItemDataCollection {
 		itemDiscountMap.put("U", Arrays.asList(new ItemDiscount("U", 3, 0, "U")));
 		itemDiscountMap.put("V", Arrays.asList(new ItemDiscount("V", 2, 90, null), new ItemDiscount("V", 3, 130, null)));
 		
-		itemDiscountMap.put("S", Arrays.asList(new ItemDiscount("S", 1, 15, null)));
-		itemDiscountMap.put("T", Arrays.asList(new ItemDiscount("T", 1, 15, null)));
-		itemDiscountMap.put("X", Arrays.asList(new ItemDiscount("X", 1, 15, null)));
-		itemDiscountMap.put("Y", Arrays.asList(new ItemDiscount("Y", 1, 15, null)));
-		itemDiscountMap.put("Z", Arrays.asList(new ItemDiscount("Z", 1, 15, null)));
+		itemDiscountMap.put("S", Arrays.asList(new ItemDiscount("S", 3, 45, null)));
+		itemDiscountMap.put("T", Arrays.asList(new ItemDiscount("T", 3, 45, null)));
+		itemDiscountMap.put("X", Arrays.asList(new ItemDiscount("X", 3, 45, null)));
+		itemDiscountMap.put("Y", Arrays.asList(new ItemDiscount("Y", 3, 45, null)));
+		itemDiscountMap.put("Z", Arrays.asList(new ItemDiscount("Z", 3, 45, null)));
 		
 		return itemDiscountMap;
 	}
 
 }
+

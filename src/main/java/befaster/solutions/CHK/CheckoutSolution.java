@@ -26,12 +26,14 @@ public class CheckoutSolution {
     			// Validate Input
     			validateShoppingCartItems(shoppingCartItemList);
 
-
     			// Prepare Item Quantity Map here
     			Map<String, Long> itemQuantityMap = ItemDataCollection.getItemQuantityMap(shoppingCartItemList);
+    			
+    			// Get Price for each Item here
+    			Map<String, Integer> itemPriceMap = ItemDataCollection.getItemPriceMap();
 
     			// Now Calculate Total Price
-    			calculateTotalPriceForItems(itemQuantityMap);
+    			calculateTotalPriceForItems(itemQuantityMap, itemPriceMap);
 
     		}catch(IllegalArgumentException e) {
     			// Log Message here
@@ -53,12 +55,22 @@ public class CheckoutSolution {
 		}
 	}
 
-	private void calculateTotalPriceForItems(Map<String, Long> itemQuantityMap) {
+	private void calculateTotalPriceForItems(Map<String, Long> itemQuantityMap, Map<String, Integer> itemPriceMap) {
+
+		if(MapUtils.isNotEmpty(itemQuantityMap)) {
+
+			// Start Calculation here
+			itemQuantityMap.forEach((shoppingItem, shoppingQuantity) -> {
+
+				totalPrice += (shoppingQuantity.intValue() * itemPriceMap.get(shoppingItem));
+			});
+			// End Calculation here
+		}
+	}
+	
+	private void calculateDiscount(Map<String, Long> itemQuantityMap, Map<String, Integer> itemPriceMap) {
 		
 		if(MapUtils.isNotEmpty(itemQuantityMap)) {
-						
-			// Get Price for each Item here
-			Map<String, Integer> itemPriceMap = ItemDataCollection.getItemPriceMap();
 			
 			// Get Item Offer here
 			Map<String, List<ItemDiscount>> itemDiscountMap = ItemDataCollection.getItemDiscountMap();
@@ -107,16 +119,10 @@ public class CheckoutSolution {
 							}
 						}
 					}
-				}else {
-					totalPrice += (shoppingQuantity.intValue() * itemPriceMap.get(shoppingItem));
 				}
 			});
 			// End Calculation here
 		}
-	}
-	
-	private void calculateDiscount(Map<String, Long> itemQuantityMap) {
-		
 	}
 	
 	private Optional<ItemDiscount> getItemDiscount(List<ItemDiscount> itemDiscountList, Integer shoppingItemQuantity) {
@@ -128,5 +134,6 @@ public class CheckoutSolution {
 		return Optional.empty();
 	}
 }
+
 
 

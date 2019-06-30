@@ -89,8 +89,8 @@ public class CheckoutSolution {
 									
 									totalPrice += (itemDiscount.getItemQuantity() * itemPriceMap.get(shoppingItem));
 									
-									if(itemQuantityMap.containsKey(itemDiscount.getItemFree()) 
-											&& itemQuantityMap.get(itemDiscount.getItemFree()).intValue() > 0) {
+									if(itemQuantityMap.containsKey(itemDiscount.getItemFree())) {
+										
 										List<ItemDiscount> itemDiscountFreeList = itemDiscountMap.get(itemDiscount.getItemFree());
 										if(CollectionUtils.isNotEmpty(itemDiscountFreeList)) {
 											Integer freeItemCount = itemQuantityMap.get(itemDiscount.getItemFree()).intValue();
@@ -134,6 +134,7 @@ public class CheckoutSolution {
 		return Optional.empty();
 	}
 }
+
 
 
 

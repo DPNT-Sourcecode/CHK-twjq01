@@ -26,12 +26,14 @@ public class CheckoutSolution {
     			// Validate Input
     			validateShoppingCartItems(shoppingCartItemList);
 
-
+    			// Get Price for each Item here
+    			Map<String, Integer> itemPriceMap = ItemDataCollection.getItemPriceMap();
+    			
     			// Prepare Item Quantity Map here
     			Map<String, Long> itemQuantityMap = ItemDataCollection.getItemQuantityMap(shoppingCartItemList);
 
     			// Now Calculate Total Price
-    			calculateTotalPriceForItems(itemQuantityMap);
+    			calculateTotalPriceForItems(itemQuantityMap, itemPriceMap);
 
     		}catch(IllegalArgumentException e) {
     			// Log Message here
@@ -53,18 +55,28 @@ public class CheckoutSolution {
 		}
 	}
 
-	private void calculateTotalPriceForItems(Map<String, Long> itemQuantityMap) {
+	private void calculateTotalPriceForItems(Map<String, Long> itemQuantityMap, Map<String, Integer> itemPriceMap) {
 		
 		if(MapUtils.isNotEmpty(itemQuantityMap)) {
 						
-			// Get Price for each Item here
-			Map<String, Integer> itemPriceMap = ItemDataCollection.getItemPriceMap();
-			
-			// Get Item Offer here
-			Map<String, List<ItemDiscount>> itemDiscountMap = ItemDataCollection.getItemDiscountMap();
-			
 			// Start Calculation here
 			itemQuantityMap.forEach((shoppingItem, shoppingQuantity) -> {
+					totalPrice += (shoppingQuantity.intValue() * itemPriceMap.get(shoppingItem));
+			});
+			// End Calculation here
+		}
+	}
+	
+	private void calculateDiscount() {
+		
+		// Get Item Offer here
+		Map<String, List<ItemDiscount>> itemDiscountMap = ItemDataCollection.getItemDiscountMap();
+		
+		if(MapUtils.isNotEmpty(itemQuantityMap)) {
+
+			// Start Calculation here
+			itemQuantityMap.forEach((shoppingItem, shoppingQuantity) -> {
+
 				// Check for discount on Item
 				if(itemDiscountMap.containsKey(shoppingItem)) {
 					List<ItemDiscount> itemDiscountList = itemDiscountMap.get(shoppingItem);
@@ -74,9 +86,9 @@ public class CheckoutSolution {
 							if(itemDiscountOptional.isPresent()) {
 								ItemDiscount itemDiscount = itemDiscountOptional.get();
 								if(StringUtils.isNotEmpty(itemDiscount.getItemFree())) {
-									
+
 									totalPrice += (itemDiscount.getItemQuantity() * itemPriceMap.get(shoppingItem));
-									
+
 									if(itemQuantityMap.containsKey(itemDiscount.getItemFree()) 
 											&& itemQuantityMap.get(itemDiscount.getItemFree()).intValue() > 0) {
 										List<ItemDiscount> itemDiscountFreeList = itemDiscountMap.get(itemDiscount.getItemFree());
@@ -99,21 +111,14 @@ public class CheckoutSolution {
 								}else {
 									totalPrice += itemDiscount.getItemPrice();
 								}
-								
+
 								shoppingQuantity -= itemDiscount.getItemQuantity();
-							}else {
-								totalPrice += (shoppingQuantity.intValue() * itemPriceMap.get(shoppingItem));
-								shoppingQuantity -= shoppingQuantity;
 							}
-						}
+						});
 					}
-				}else {
-					totalPrice += (shoppingQuantity.intValue() * itemPriceMap.get(shoppingItem));
 				}
-			});
-			// End Calculation here
+			}
 		}
-	}
 	
 	private Optional<ItemDiscount> getItemDiscount(List<ItemDiscount> itemDiscountList, Integer shoppingItemQuantity) {
 		List<ItemDiscount> filterList = itemDiscountList.stream().filter(item -> item.getItemQuantity() <= shoppingItemQuantity).collect(Collectors.toList());
@@ -124,3 +129,4 @@ public class CheckoutSolution {
 		return Optional.empty();
 	}
 }
+

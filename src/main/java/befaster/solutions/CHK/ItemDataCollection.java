@@ -38,7 +38,7 @@ public class ItemDataCollection {
 	}
 	
 	public static List<String> getValidItems() {
-		return Arrays.asList("A","B","C","D","E");
+		return Arrays.asList("A","B","C","D","E","F");
 	}
 	
 	public static Map<String, Long> getItemQuantityMap(List<String> shoppingCartItemList) {
@@ -61,4 +61,5 @@ public class ItemDataCollection {
 	}
 
 }
+
 

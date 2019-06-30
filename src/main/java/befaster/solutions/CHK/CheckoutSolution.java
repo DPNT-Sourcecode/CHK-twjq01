@@ -94,15 +94,17 @@ public class CheckoutSolution {
 
 								if(StringUtils.isNotEmpty(itemDiscount.getItemFree())) {
 									if(itemQuantityMap.containsKey(itemDiscount.getItemFree())) {
-										if(shoppingQuantity > itemDiscount.getItemQuantity()) {
-											if(CollectionUtils.isEmpty(alreadyAppliedDiscount)) {
-												alreadyAppliedDiscount.add(itemDiscount);
-												totalPrice -= itemPriceMap.get(itemDiscount.getItemFree());
-											}else if(!alreadyAppliedDiscount.contains(itemDiscount)) {
+										if(!shoppingItem.equals(itemDiscount.getItemFree())) {
+											if(shoppingQuantity > itemDiscount.getItemQuantity()) {
+												if(CollectionUtils.isEmpty(alreadyAppliedDiscount)) {
+													alreadyAppliedDiscount.add(itemDiscount);
+													totalPrice -= itemPriceMap.get(itemDiscount.getItemFree());
+												}else if(!alreadyAppliedDiscount.contains(itemDiscount)) {
+													totalPrice -= itemPriceMap.get(itemDiscount.getItemFree());
+												}
+											}else if(!alreadyAppliedDiscount.stream().filter(aad -> aad.getItemName().equals(itemDiscount.getItemFree())).findFirst().isPresent()) {
 												totalPrice -= itemPriceMap.get(itemDiscount.getItemFree());
 											}
-										}else if(!alreadyAppliedDiscount.stream().filter(aad -> aad.getItemName().equals(itemDiscount.getItemFree())).findFirst().isPresent()) {
-											totalPrice -= itemPriceMap.get(itemDiscount.getItemFree());
 										}
 									}
 								}else {

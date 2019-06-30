@@ -100,9 +100,11 @@ public class CheckoutSolution {
 												totalPrice -= itemPriceMap.get(itemDiscount.getItemFree());
 											}else if(!alreadyAppliedDiscount.contains(itemDiscount)) {
 												totalPrice -= itemPriceMap.get(itemDiscount.getItemFree());
-											}else if(shoppingItem.equals("F")) {
+											}else if(shoppingItem.equals("F") || shoppingItem.equals("U")) {
 												if(itemQuantityMap.get("F").intValue() > 2) {
 													totalPrice -= itemPriceMap.get(itemDiscount.getItemFree());
+												}else if(itemQuantityMap.get("U").intValue() > 3) {
+													
 												}
 											}
 										}else if(!alreadyAppliedDiscount.stream().filter(aad -> aad.getItemName().equals(itemDiscount.getItemFree())).findFirst().isPresent()) {

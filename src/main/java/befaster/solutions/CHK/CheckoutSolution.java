@@ -108,6 +108,8 @@ public class CheckoutSolution {
 								}else {
 									if(!isFreeDiscountExist(itemDiscountMap, shoppingItem, itemQuantityMap)) {
 										totalPrice -= (itemDiscount.getItemQuantity() * itemPriceMap.get(shoppingItem)) - itemDiscount.getItemPrice();
+									}else if(shoppingQuantity == itemDiscount.getItemQuantity().intValue()){	
+										
 									}else if(shoppingQuantity > itemDiscount.getItemQuantity()){
 										if(CollectionUtils.isEmpty(alreadyAppliedDiscount)) {
 											alreadyAppliedDiscount.add(itemDiscount);
@@ -153,6 +155,7 @@ public class CheckoutSolution {
 		return checkFlag;
 	}
 }
+
 
 
 

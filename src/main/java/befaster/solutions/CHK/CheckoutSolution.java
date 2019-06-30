@@ -1,5 +1,6 @@
 package befaster.solutions.CHK;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -71,6 +72,8 @@ public class CheckoutSolution {
 	private void calculateDiscount(Map<String, Long> itemQuantityMap, Map<String, Integer> itemPriceMap) {
 		
 		if(MapUtils.isNotEmpty(itemQuantityMap)) {
+			
+			List<ItemDiscount> alreadyAppliedDiscount = new ArrayList<>();
 			
 			// Get Item Offer here
 			Map<String, List<ItemDiscount>> itemDiscountMap = ItemDataCollection.getItemDiscountMap();
@@ -150,6 +153,7 @@ public class CheckoutSolution {
 		return checkFlag;
 	}
 }
+
 
 
 

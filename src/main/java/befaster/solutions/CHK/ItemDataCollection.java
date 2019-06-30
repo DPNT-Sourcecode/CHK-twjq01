@@ -38,6 +38,8 @@ public class ItemDataCollection {
 		itemPriceMap.put("I", 35);
 		itemPriceMap.put("J", 60);
 		itemPriceMap.put("K", 80);
+		itemPriceMap.put("L", 90);
+		itemPriceMap.put("M", 15);
 		
 		return itemPriceMap;
 	}
@@ -68,4 +70,5 @@ public class ItemDataCollection {
 	}
 
 }
+
 

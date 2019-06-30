@@ -101,20 +101,21 @@ public class CheckoutSolution {
 											}else if(!alreadyAppliedDiscount.contains(itemDiscount)) {
 												totalPrice -= itemPriceMap.get(itemDiscount.getItemFree());
 											}
-										}else if(!alreadyAppliedDiscount.stream().filter(aad -> aad.getItemName().equals(itemDiscount.getItemFree())).findFirst().isPresent()) {
-											totalPrice -= itemPriceMap.get(itemDiscount.getItemFree());
 										}
+//										else if(!alreadyAppliedDiscount.stream().filter(aad -> aad.getItemName().equals(itemDiscount.getItemFree())).findFirst().isPresent()) {
+//											totalPrice -= itemPriceMap.get(itemDiscount.getItemFree());
+//										}
 									}
 								}else {
 									if(!isFreeDiscountExist(itemDiscountMap, shoppingItem, itemQuantityMap)) {
 										totalPrice -= (itemDiscount.getItemQuantity() * itemPriceMap.get(shoppingItem)) - itemDiscount.getItemPrice();
 									}else if(shoppingQuantity > itemDiscount.getItemQuantity()){
-										if(CollectionUtils.isEmpty(alreadyAppliedDiscount)) {
-											//alreadyAppliedDiscount.add(itemDiscount);
+//										if(CollectionUtils.isEmpty(alreadyAppliedDiscount)) {
+//											alreadyAppliedDiscount.add(itemDiscount);
 											totalPrice -= itemDiscount.getItemPrice();
-										}else if(!alreadyAppliedDiscount.contains(itemDiscount)) {
-											totalPrice -= itemDiscount.getItemPrice();
-										}
+//										}else if(!alreadyAppliedDiscount.contains(itemDiscount)) {
+//											totalPrice -= itemDiscount.getItemPrice();
+//										}
 									}
 								}
 								shoppingQuantity -= itemDiscount.getItemQuantity();
@@ -153,4 +154,5 @@ public class CheckoutSolution {
 		return checkFlag;
 	}
 }
+
 

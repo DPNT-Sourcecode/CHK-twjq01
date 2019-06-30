@@ -107,7 +107,7 @@ public class CheckoutSolution {
 											}
 										}else if(!alreadyAppliedDiscount.stream().filter(aad -> aad.getItemName().equals(itemDiscount.getItemFree())).findFirst().isPresent()) {
 											if(shoppingItem.equals("F")) {
-												if(itemQuantityMap.get("F").intValue() > 2) {
+												if(itemQuantityMap.get("F").intValue() > 2 && shoppingQuantity != 2) {
 													totalPrice -= itemPriceMap.get(itemDiscount.getItemFree());
 												}
 											}else {
@@ -165,3 +165,4 @@ public class CheckoutSolution {
 		return checkFlag;
 	}
 }
+

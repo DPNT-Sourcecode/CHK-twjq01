@@ -33,12 +33,13 @@ public class ItemDataCollection {
 		itemPriceMap.put("D", 15);
 		itemPriceMap.put("E", 40);
 		itemPriceMap.put("F", 10);
+		itemPriceMap.put("G", 20);
 		
 		return itemPriceMap;
 	}
 	
 	public static List<String> getValidItems() {
-		return Arrays.asList("A","B","C","D","E","F");
+		return Arrays.asList("A","B","C","D","E","F","G");
 	}
 	
 	public static Map<String, Long> getItemQuantityMap(List<String> shoppingCartItemList) {
@@ -61,3 +62,4 @@ public class ItemDataCollection {
 	}
 
 }
+
